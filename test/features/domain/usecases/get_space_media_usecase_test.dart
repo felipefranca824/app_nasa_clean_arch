@@ -7,6 +7,9 @@ import 'package:nasa_media/features/domain/repositories/space_media_repository.d
 import 'package:nasa_media/features/domain/usecases/get_space_media_from_date_usecase.dart';
 import 'package:mocktail/mocktail.dart';
 
+import '../../mocks/date_mock.dart';
+import '../../mocks/space_media_entity_mock.dart';
+
 class MockSpaceMediaRepository extends Mock implements ISpaceMediaRepository {}
 
 void main() {
@@ -18,13 +21,6 @@ void main() {
     usecase = GetSpaceMediaFromDateUsecase(repository);
   });
 
-  final tSpaceMedia = SpaceMediaEntity(
-      description: 'Descricao',
-      mediaType: 'image ',
-      title: 'Title',
-      mediaUrl: 'http://');
-
-  final tDate = DateTime(2021, 02, 02);
   test('should get space media entity for a given date from the repository',
       () async {
     when(() => repository.getSpaceMediaFromDate(tDate))
