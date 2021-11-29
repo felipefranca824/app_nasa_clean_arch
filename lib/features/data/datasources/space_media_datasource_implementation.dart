@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:nasa_media/core/errors/exceptions.dart';
 import 'package:nasa_media/core/http_client/http_client.dart';
 import 'package:nasa_media/core/utils/converters/date_to_string_converter.dart';
 import 'package:nasa_media/core/utils/keys/nasa_api_key.dart';
@@ -20,7 +21,7 @@ class SpaceMediaDatasouceImplementation implements ISpaceMediaDatasource {
     if (response.statusCode == 200) {
       return SpaceMediaModel.fromJson(jsonDecode(response.data));
     } else {
-      throw Exception();
+      throw ServerException();
     }
   }
 }
