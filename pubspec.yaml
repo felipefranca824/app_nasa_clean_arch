@@ -30,7 +30,7 @@ dependencies:
   flutter:
     sdk: flutter
   equatable:
-  dio:
+  http:
   dartz:
   flutter_modular:
 
