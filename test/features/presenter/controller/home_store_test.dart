@@ -1,6 +1,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
+import 'package:nasa_media/core/errors/failures.dart';
 import 'package:nasa_media/features/domain/usecases/get_space_media_from_date_usecase.dart';
 import 'package:nasa_media/features/presenter/controller/home_store.dart';
 
@@ -27,6 +28,19 @@ void main() {
 
     homeStore.observer(onState: (state) {
       expect(state, tSpaceMedia);
+      verify(() => usecase(tDate)).called(1);
+    });
+  });
+
+  final tFailure = ServerFailure();
+  test('should return a Failure from the usecase when there is an error',
+      () async {
+    when(() => usecase(any())).thenAnswer((_) async => Left(tFailure));
+
+    await homeStore.getSpaceMediaFromDate(tDate);
+
+    homeStore.observer(onError: (error) {
+      expect(error, tFailure);
       verify(() => usecase(tDate)).called(1);
     });
   });
