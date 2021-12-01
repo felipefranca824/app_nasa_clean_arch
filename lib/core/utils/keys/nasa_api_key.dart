@@ -1,3 +1,7 @@
 class NasaApiKeys {
-  static String apiKey = 'DEMO_KEY';
+  static Uri getSpaceMedia(String apiKey, String date) =>
+      Uri.https('api.nasa.gov', '/planetary/apod', {
+        'api_key': '$apiKey',
+        'date': '$date',
+      });
 }

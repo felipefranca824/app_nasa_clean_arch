@@ -10,7 +10,7 @@ class HomeStore extends NotifierStore<Failure, SpaceMediaEntity> {
       : super(SpaceMediaEntity(
             description: "", mediaType: "", title: "", mediaUrl: ""));
 
-  getSpaceMediaFromDate(DateTime date) async {
+  getSpaceMediaFromDate(DateTime? date) async {
     setLoading(true);
 
     final result = await usecase(date);

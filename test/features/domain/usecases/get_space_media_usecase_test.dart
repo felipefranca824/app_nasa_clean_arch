@@ -39,4 +39,11 @@ void main() {
     expect(result, Left(ServerFailure()));
     verify(() => repository.getSpaceMediaFromDate(tDate)).called(1);
   });
+
+  test('should return a NullParamFailure when receives a null param', () async {
+    final result = await usecase(null);
+
+    expect(result, Left(NullParamFailure()));
+    verifyNever(() => repository.getSpaceMediaFromDate(tDate));
+  });
 }
